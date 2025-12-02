@@ -1,5 +1,5 @@
 variable "environment" {
-   default = "dev"
+  default = "dev"
 }
 
 variable "service_tag" {
@@ -36,6 +36,6 @@ variable "priority" {
 variable "name" {
   default = "web"
 }
-variable "appversion" {
-  
+variable "app_version" {
+  default = "1.0"
 }
