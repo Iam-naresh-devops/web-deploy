@@ -85,7 +85,7 @@ jobs:
           terraform apply \
             -auto-approve \
             -var-file=${{ github.event.inputs.environment }}/${{ github.event.inputs.environment }}.tfvars \
-            -var="appversion=${{ github.event.inputs.version }}"
+            -var="app_version=${{ github.event.inputs.version }}"
 
       # --------------------------------
       # Terraform Destroy
@@ -98,7 +98,7 @@ jobs:
           terraform destroy \
             -auto-approve \
             -var-file=${{ github.event.inputs.environment }}/${{ github.event.inputs.environment }}.tfvars \
-            -var="appversion=${{ github.event.inputs.version }}"
+            -var="app_version=${{ github.event.inputs.version }}"
 
       # -------------------------
       # Post Build Messages
