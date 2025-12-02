@@ -16,6 +16,7 @@ module "web" {
  priority = var.priority
  app_listener_arn = data.aws_ssm_parameter.web_alb-listener_arn.value
  port = "80"
+ app_version = var.app_version
  }
 
 
