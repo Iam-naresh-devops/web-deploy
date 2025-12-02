@@ -14,11 +14,11 @@ on:
         type: boolean
         default: false
       environment:
-        description: "Environment name (dev/prod/stage)"
+        description: "Environment Name (dev/prod/stage)"
         required: true
         type: string
-      version:
-        description: "App version"
+      app_version:
+        description: "App_version"
         required: false
         type: string
         default: ""
@@ -85,7 +85,7 @@ jobs:
           terraform apply \
             -auto-approve \
             -var-file=${{ github.event.inputs.environment }}/${{ github.event.inputs.environment }}.tfvars \
-            -var="app_version=${{ github.event.inputs.version }}"
+            -var="app_version=${{ github.event.inputs.app_version }}"
 
       # --------------------------------
       # Terraform Destroy
