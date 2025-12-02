@@ -6,11 +6,11 @@ terraform {
     }
 }
 backend "s3" {
-    bucket = "eternal-s3-dev"
+    bucket = "roboshop"
     region = "us-east-1"
     use_lockfile = true
     }
 
-required_version = ">= 1.2"
+required_version = ">= 1.0"
 
 }
