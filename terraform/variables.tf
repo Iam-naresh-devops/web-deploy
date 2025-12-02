@@ -1,8 +1,3 @@
-variable "tags" {
-  default = {
-    service = "web"
-  }
-}
 variable "common_tags" {
   type = map(string)
   default = {
@@ -13,9 +8,6 @@ variable "common_tags" {
 }
 variable "project" {
   default = "eternalplace"
-}
-variable "environment" {
-  default = "dev"
 }
 variable "zone_id" {
   default = "Z101265833JA5X90XBKK8"
