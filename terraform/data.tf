@@ -4,12 +4,12 @@ data "aws_ssm_parameter" "ami_user" {
 data "aws_ssm_parameter" "ami_password" {
     name = "/${var.project}/${var.environment}/ami_password"
 }
-data "aws_ami" "centos" {
+data "aws_ami" "AMI_2" {
   most_recent = true
-  owners      = ["973714476881"]
+  owners      = ["703671922956"]
   filter {
-    name   = "name"
-    values = ["Centos-8-*"]
+    name   = "Name"
+    values = ["practicedevops-2"]
   }
 }
 data "aws_ssm_parameter" "private_subnet_ids" {

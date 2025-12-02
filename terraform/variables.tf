@@ -2,7 +2,7 @@ variable "environment" {
   default = "dev"
 }
 
-variable "service_tag" {
+variable "tags" {
   type = map(string)
   default =  {
     web =  "nginx"
@@ -21,10 +21,10 @@ variable "project" {
   default = "eternalplace"
 }
 variable "zone_id" {
-  default = "Z101265833JA5X90XBKK8"
+  default = "Z03105683IDC7LBRUZE5"
 }
 variable "zone_name" {
-  default = "eternaltrainings.online"  
+  default = "eternallearnings.shop"  
 }
 variable "instance_type" {
   default = "t2.micro" 
