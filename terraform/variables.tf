@@ -36,3 +36,6 @@ variable "priority" {
 variable "name" {
   default = "web"
 }
+variable "appversion" {
+  
+}

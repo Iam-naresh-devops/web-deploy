@@ -98,7 +98,7 @@ jobs:
           terraform destroy \
             -auto-approve \
             -var-file=${{ github.event.inputs.environment }}/${{ github.event.inputs.environment }}.tfvars \
-            -var="app_version=${{ github.event.inputs.version }}"
+            -var="appversion=${{ github.event.inputs.version }}"
 
       # -------------------------
       # Post Build Messages
