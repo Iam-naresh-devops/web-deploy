@@ -52,6 +52,14 @@ jobs:
           cd terraform
           terraform init --backend-config=${{ github.event.inputs.environment }}/backend.tf -reconfigure
 
+       # -------------------------
+      # Terraform format and validate (from tfvars backend)
+      # -------------------------
+      - name: Terraform Init
+        run: |
+          cd terraform
+          terraform fmt  --backend-config=${{ github.event.inputs.environment }}/backend.tf -reconfigure
+
       # --------------------------------
       # Terraform Apply
       # Runs only when deploy = true
