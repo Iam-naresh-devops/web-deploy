@@ -1,0 +1,86 @@
+name: Terraform Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: "Deploy infrastructure?"
+        required: false
+        type: boolean
+        default: false
+      destroy:
+        description: "Destroy infrastructure?"
+        required: false
+        type: boolean
+        default: false
+      environment:
+        description: "Environment name (dev/prod/stage)"
+        required: true
+        type: string
+      version:
+        description: "App version"
+        required: false
+        type: string
+        default: ""
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      # -------------------------
+      # Checkout Repository
+      # -------------------------
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # -------------------------
+      # Setup Terraform
+      # -------------------------
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      # -------------------------
+      # Terraform Init (from tfvars backend)
+      # -------------------------
+      - name: Terraform Init
+        run: |
+          cd terraform
+          terraform init --backend-config=${{ github.event.inputs.environment }}/backend.tf -reconfigure
+
+      # --------------------------------
+      # Terraform Apply
+      # Runs only when deploy = true
+      # --------------------------------
+      - name: Terraform Apply
+        if: ${{ github.event.inputs.deploy == 'true' }}
+        run: |
+          cd terraform
+          terraform apply \
+            -auto-approve \
+            -var-file=${{ github.event.inputs.environment }}/${{ github.event.inputs.environment }}.tfvars \
+            -var="appversion=${{ github.event.inputs.version }}"
+
+      # --------------------------------
+      # Terraform Destroy
+      # Runs only when destroy = true
+      # --------------------------------
+      - name: Terraform Destroy
+        if: ${{ github.event.inputs.destroy == 'true' }}
+        run: |
+          cd terraform
+          terraform destroy \
+            -auto-approve \
+            -var-file=${{ github.event.inputs.environment }}/${{ github.event.inputs.environment }}.tfvars \
+            -var="app_version=${{ github.event.inputs.version }}"
+
+      # -------------------------
+      # Post Build Messages
+      # -------------------------
+      - name: Build Result
+        if: always()
+        run: echo "Check your status below (failure or success)"
