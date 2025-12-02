@@ -25,7 +25,7 @@ on:
       
 
 jobs:
-  terraform:
+  terraform: 
     runs-on: ubuntu-latest
 
     defaults:
