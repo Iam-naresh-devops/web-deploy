@@ -1,3 +1,14 @@
+variable "environment" {
+   default = "dev"
+}
+
+variable "service_tag" {
+  type = map(string)
+  default =  {
+    web =  "nginx"
+    OS = "Redhat Linux"
+  }
+}
 variable "common_tags" {
   type = map(string)
   default = {
