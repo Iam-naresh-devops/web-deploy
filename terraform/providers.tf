@@ -2,16 +2,15 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.0"
+      version = "~> 6.0"
     }
-
-  }
- backend "s3" {
+}
+backend "s3" {
     bucket = "eternal-s3-dev"
-    key    = "web-jenkins"
     region = "us-east-1"
-    dynamodb_table = "s3-table-dev"
+    use_lockfile = true
     }
 
+required_version = ">= 1.2"
 
 }
