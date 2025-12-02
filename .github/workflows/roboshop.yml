@@ -63,7 +63,7 @@ jobs:
       # -------------------------
       - name: Terraform Init
         run: |
-          
+          cd terraform
           terraform init --backend-config=${{ github.event.inputs.environment }}/backend.tf -reconfigure
 
        # -------------------------
@@ -72,7 +72,7 @@ jobs:
       - name: Terraform format and validate
         run: |
           
-          terraform validate --backend-config=${{ github.event.inputs.environment }}/backend.tf -reconfigure
+          terraform validate
 
       # --------------------------------
       # Terraform Apply
@@ -81,7 +81,7 @@ jobs:
       - name: Terraform Apply
         if: ${{ github.event.inputs.deploy == 'true' }}
         run: |
-          
+          cd terraform
           terraform apply \
             -auto-approve \
             -var-file=${{ github.event.inputs.environment }}/${{ github.event.inputs.environment }}.tfvars \
@@ -94,7 +94,7 @@ jobs:
       - name: Terraform Destroy
         if: ${{ github.event.inputs.destroy == 'true' }}
         run: |
-          
+          cd terraform
           terraform destroy \
             -auto-approve \
             -var-file=${{ github.event.inputs.environment }}/${{ github.event.inputs.environment }}.tfvars \
