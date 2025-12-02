@@ -9,7 +9,7 @@ data "aws_ami" "AMI_2" {
   owners      = ["703671922956"]
   filter {
     name   = "name"
-    values = ["practicedevops-2"]
+    values = ["AMI_2"]
   }
 }
 data "aws_ssm_parameter" "private_subnet_ids" {
